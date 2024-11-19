@@ -14,6 +14,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.ComparatorBlock;
 import net.minecraft.block.RepeaterBlock;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.NoteBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.block.entity.SignText;
@@ -569,6 +570,14 @@ public class WorldUtils
                         hitResult = new BlockHitResult(hitPos, side, pos, false);
                         mc.interactionManager.interactBlock(mc.player, hand, hitResult);
                     }
+                }
+                if(stateSchematic.getBlock() instanceof NoteBlock){
+                    try{
+                        int note = (Integer)(stateSchematic.getEntries().get(Properties.NOTE));
+                        for(int i = 0; i < note; i++){
+                            mc.interactionManager.interactBlock(mc.player, hand, hitResult);
+                        }
+                    }catch (Exception ignored){}
                 }
             }
 
