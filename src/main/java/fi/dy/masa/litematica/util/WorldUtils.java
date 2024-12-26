@@ -640,8 +640,15 @@ public class WorldUtils
                         mc.interactionManager.interactBlock(mc.player, hand, hitResult);
                     }
                 }
+                if(stateSchematic.getBlock() instanceof NoteBlock){
+                    try{
+                        int note = stateSchematic.get(Properties.NOTE);
+                        for(int i = 0; i < note; i++){
+                            mc.interactionManager.interactBlock(mc.player, hand, hitResult);
+                        }
+                    }catch (Exception ignored){}
+                }
             }
-
             return ActionResult.SUCCESS;
         }
         else if (traceWrapper.getHitType() == HitType.VANILLA_BLOCK)
